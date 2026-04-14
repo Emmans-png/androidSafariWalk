@@ -11,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -21,6 +22,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
@@ -73,15 +76,27 @@ fun LoginScreen(modifier: Modifier = Modifier){
 
         // input password
         OutlinedTextField(
+            var isVisible by remember { mutableStateOf(false) }
+
             value = passwordInput,
             onValueChange = { passwordInput = it },
             label = { Text(text = "Password") },
             maxLines = 1,
             leadingIcon = {
                 Icon(
-                    imageVector = Icons.Outlined.Lock,
+                    imageVector = ImageVector.vectorResource(R.drawable.pass),
                     contentDescription = "Password"
-                )
+                )},
+            trailingIcon = {
+                IconButton(
+                    onClick = {}
+                ){
+                    Icon(
+                        imageVector = ImageVector.vectorResource(R.drawable.baseline_visibility_24),
+                        contentDescription = "Password",
+                        tint = greenColor,
+                    )
+                }
             },
             shape = RoundedCornerShape(32.dp),
             colors = OutlinedTextFieldDefaults.colors(
