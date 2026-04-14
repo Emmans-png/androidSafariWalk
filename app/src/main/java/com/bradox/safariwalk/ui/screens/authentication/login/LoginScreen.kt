@@ -12,6 +12,7 @@ import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,6 +27,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.bradox.safariwalk.R
 import com.bradox.safariwalk.ui.components.LottieAnimationWidget
+import com.bradox.safariwalk.ui.theme.greenColor
+import com.bradox.safariwalk.ui.theme.primaryColor
 
 
 @Composable
@@ -54,8 +57,14 @@ fun LoginScreen(modifier: Modifier = Modifier){
                     contentDescription = "Email"
                 )
             },
-            color = primaryColor,
-            shape = RoundedCornerShape(32.dp),
+          shape = RoundedCornerShape(32.dp),
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedBorderColor = primaryColor,
+                focusedBorderColor = greenColor,
+                unfocusedLabelColor = primaryColor,
+                focusedLabelColor = greenColor,
+
+            ),
             placeholder = {Text(text = "eg johndoe@example.com")},
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
         )
@@ -75,6 +84,13 @@ fun LoginScreen(modifier: Modifier = Modifier){
                 )
             },
             shape = RoundedCornerShape(32.dp),
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedBorderColor = primaryColor,
+                focusedBorderColor = greenColor,
+                unfocusedLabelColor = primaryColor,
+                focusedLabelColor = greenColor,
+            ),
+            visualTransformation = PasswordVisualTransformation(),
             placeholder = { Text(text = "*******") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
