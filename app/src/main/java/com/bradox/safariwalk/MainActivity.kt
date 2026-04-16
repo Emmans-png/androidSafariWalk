@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.bradox.safariwalk.ui.screens.authentication.login.LoginScreen
+import com.bradox.safariwalk.ui.screens.authentication.signup.SignupScreen
 import com.bradox.safariwalk.ui.theme.SafariWalkTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             SafariWalkTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LoginScreen(modifier = Modifier.padding(innerPadding))
+                    SignupScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

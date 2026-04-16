@@ -1,6 +1,5 @@
 package com.bradox.safariwalk.ui.screens.authentication.login
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +8,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Email
-import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -27,6 +27,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.bradox.safariwalk.R
 import com.bradox.safariwalk.ui.components.LottieAnimationWidget
@@ -75,9 +76,8 @@ fun LoginScreen(modifier: Modifier = Modifier){
         Spacer(modifier = Modifier.height(8.dp))
 
         // input password
+        var isVisible by remember { mutableStateOf(false) }
         OutlinedTextField(
-            var isVisible by remember { mutableStateOf(false) }
-
             value = passwordInput,
             onValueChange = { passwordInput = it },
             label = { Text(text = "Password") },
@@ -89,7 +89,7 @@ fun LoginScreen(modifier: Modifier = Modifier){
                 )},
             trailingIcon = {
                 IconButton(
-                    onClick = {}
+                    onClick = { isVisible = !isVisible }
                 ){
                     Icon(
                         imageVector = ImageVector.vectorResource(R.drawable.baseline_visibility_24),
@@ -105,9 +105,17 @@ fun LoginScreen(modifier: Modifier = Modifier){
                 unfocusedLabelColor = primaryColor,
                 focusedLabelColor = greenColor,
             ),
-            visualTransformation = PasswordVisualTransformation(),
+            visualTransformation = if (isVisible) VisualTransformation.None else PasswordVisualTransformation(),
             placeholder = { Text(text = "*******") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
+//        button
+        Button(
+            onClick = { /*TODO*/ },
+            shape = RoundedCornerShape(32.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = greenColor)
+        ) {
+            Text(text = "Login")
+        }
     }
 }
