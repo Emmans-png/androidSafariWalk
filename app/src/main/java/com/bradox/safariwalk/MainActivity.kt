@@ -19,7 +19,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             SafariWalkTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    OnboardingScreen()
+                OnboardingScreen(modifier = Modifier.padding(innerPadding))
+
                 }
             }
         }
